@@ -10,10 +10,11 @@ export default function Navbar() {
         <div className="inline-flex items-center">
           <div className="relative h-10 w-10 rounded-full bg-amber-200">
             <Image
-              src="/avatar.png" // Points directly to public/logo.png
+              src="/avatar.png"
               alt="My Avatar"
               fill
-              className="" // Or "object-contain" depending on your logo's shape
+              sizes="(max-width: 250px) 50vw, 100vw"
+              className="object-cover"
               priority
             />
           </div>
@@ -21,7 +22,7 @@ export default function Navbar() {
         <div className="col-span-2 inline-flex justify-center gap-4">
           <div className="flex flex-row justify-end items-center gap-4 px-2 [&>*]:transition-transform [&>*]:duration-300 [&>*]:hover:scale-105 [&>*]:hover:opacity-50">
             <Link href="/">Home</Link>
-            <Link href="/contact">Portfolio</Link>
+            <Link href="/projects">Portfolio</Link>
             <Link href="/blog">Blog</Link>
           </div>
         </div>
