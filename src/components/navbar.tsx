@@ -13,7 +13,7 @@ export default function Navbar() {
               src="/avatar.png"
               alt="My Avatar"
               fill
-              sizes="(max-width: 250px) 50vw, 100vw"
+              sizes="(max-width: 250px) 25vw, 25vw"
               className="object-cover"
               priority
             />
