@@ -5,7 +5,7 @@ import { User } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="fixed w-full flex flex-row justify-center items-center my-2 py-1 px-2">
+    <header className="fixed z-50 w-full flex flex-row justify-center items-center my-2 py-1 px-2">
       <nav className="grid grid-cols-4 p-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-xl">
         <div className="inline-flex items-center">
           <div className="relative h-10 w-10 rounded-full bg-amber-200">
