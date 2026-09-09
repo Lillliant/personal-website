@@ -19,13 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${notoSans.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${notoSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
+        <div className="h-24">
+          <Navbar />
+        </div>
+        <div className="pt-24 h-full flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

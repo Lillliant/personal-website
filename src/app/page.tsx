@@ -4,18 +4,18 @@ import Typewriter from "@/components/typeWriter";
 export default function Home() {
   return (
     <main>
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <div className="relative h-50 w-50 rounded-full bg-amber-200">
+      <div className="flex flex-col items-center justify-center">
+        <div className="h-50 w-50 overflow-hidden rounded-full bg-amber-200">
           <Image
             src="/avatar.png"
             alt="My Avatar"
-            fill
-            sizes="(max-width: 100px) 25vw, 25vw"
-            className="object-cover"
+            width={200}
+            height={200}
+            className="h-full w-full object-cover"
             priority
           />
         </div>
-        <div className="mt-4 w-full max-w-xl px-4">
+        <div className="p-4 w-full max-w-xl text-center">
           <Typewriter
             text="Hello, Welcome to My Website!"
             className="font-mono text-3xl font-bold text-center"
