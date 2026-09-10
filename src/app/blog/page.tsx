@@ -62,27 +62,27 @@ export default async function BlogIndexPage({
               {filteredPosts.map((post) => (
                 <article
                   key={post.slug}
-                  className="mx-2 pb-2 border-b border-zinc-300 md:border-b-0"
+                  className="group mx-2 pb-2 border-b border-zinc-300 md:border-b-0"
                 >
                   <Link
                     href={post.permalink}
-                    className="block p-4 rounded-lg transition-colors hover:bg-zinc-100"
+                    className="block p-4 rounded-lg transition-colors hover:bg-zinc-50"
                   >
-                    <h2 className="text-2xl font-semibold hover:text-amber-500">
+                    <h2 className="text-2xl font-semibold group-hover:text-amber-500 transition-colors transition-transform group-hover:translate-x-1">
                       {post.title}
                     </h2>
                     <time
                       dateTime={post.date}
-                      className="text-zinc-500 text-sm mb-6 block"
+                      className="text-zinc-500 text-sm block"
                     >
                       {formatShortDate(post.date)}
                     </time>
                     {post.description && (
-                      <p className="text-zinc-700 mt-2">{post.description}</p>
+                      <p className="text-zinc-700 my-3">{post.description}</p>
                     )}
-                    <div className="flex flex-wrap gap-2 mt-3">
+                    <div className="flex flex-wrap gap-3 mt-3">
                       {post.tags?.map((t) => (
-                        <span key={t} className="px-2 py-0.5 gap-0.5 tag-pill">
+                        <span key={t} className="px-0.5 py-0.5 gap-0.5 tag-pill">
                           <span className="text-amber-500">#</span>
                           {t}
                         </span>
