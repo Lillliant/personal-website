@@ -67,16 +67,18 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
         <span className="inline-flex items-center gap-2">
           <Filter className="size-4 shrink-0" aria-hidden />
           Filters
+        </span>
+        <span className="inline-flex items-center gap-2">
           {activeCount > 0 && (
             <span className="rounded-full bg-zinc-900 text-white text-xs px-1.5 py-0.5 min-w-5 text-center">
               {activeCount}
             </span>
           )}
+          <ChevronDown
+            className={`size-4 shrink-0 transition-transform ${mobileOpen ? "rotate-180" : ""}`}
+            aria-hidden
+          />
         </span>
-        <ChevronDown
-          className={`size-4 shrink-0 transition-transform ${mobileOpen ? "rotate-180" : ""}`}
-          aria-hidden
-        />
       </button>
 
       {/* Collapsible filter menu for mobile devices */}
