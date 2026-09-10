@@ -24,9 +24,11 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   return (
     <article className="max-w-3xl mx-auto py-10 px-4">
       <h1 className="text-4xl font-bold mb-2">{post.title}</h1>
-      <time dateTime={post.date} className="text-gray-500 text-sm mb-6 block">
-        {formatShortDate(post.date)}
-      </time>
+      <p className="text-gray-500 text-sm mb-6">
+        <time dateTime={post.date}>{formatShortDate(post.date)}</time>
+        <span aria-hidden="true"> · </span>
+        <span>{post.readingTime} min read</span>
+      </p>
       <hr className="my-6" />
       <MDXContent code={post.body} />
     </article>

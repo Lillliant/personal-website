@@ -19,12 +19,14 @@ export default defineConfig({
           date: s.isodate(),
           tags: s.array(s.string()).default([]),
           description: s.string().optional(),
+          metadata: s.metadata(),
           body: s.mdx(),
         })
         .transform((data) => ({
           ...data,
           permalink: `/blog/${data.slug}`,
           year: new Date(data.date).getUTCFullYear().toString(),
+          readingTime: data.metadata.readingTime,
         })),
     },
   },

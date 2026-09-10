@@ -71,12 +71,13 @@ export default async function BlogIndexPage({
                     <h2 className="text-2xl font-semibold group-hover:text-amber-500 transition-colors transition-transform group-hover:translate-x-1">
                       {post.title}
                     </h2>
-                    <time
-                      dateTime={post.date}
-                      className="text-zinc-500 text-sm block"
-                    >
-                      {formatShortDate(post.date)}
-                    </time>
+                    <p className="text-zinc-500 text-sm">
+                      <time dateTime={post.date}>
+                        {formatShortDate(post.date)}
+                      </time>
+                      <span aria-hidden="true"> · </span>
+                      <span>{post.readingTime} min read</span>
+                    </p>
                     {post.description && (
                       <p className="text-zinc-700 my-3">{post.description}</p>
                     )}
