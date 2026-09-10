@@ -89,7 +89,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
           <h3 className="text-sm font-semibold uppercase mb-3 tracking-wider">
             Year
           </h3>
-          <div className="flex flex-wrap md:flex-col gap-1.5">
+          <div className="flex flex-wrap gap-1.5">
             {years.map((year) => {
               const isActive = selectedYear === year;
               return (
@@ -97,7 +97,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
                   key={year}
                   type="button"
                   onClick={() => updateYear(year)}
-                  className={`text-left px-2.5 py-1 text-sm rounded-full transition-colors ${
+                  className={`w-fit max-w-full text-left px-3 py-1 text-sm rounded-full transition-colors ${
                     isActive
                       ? "bg-amber-400 text-zinc-900 font-medium"
                       : "hover:bg-amber-50 hover:text-zinc-900"
