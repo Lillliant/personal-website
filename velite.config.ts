@@ -17,12 +17,14 @@ export default defineConfig({
           slug: s.slug("posts"), // Falls back to filename if not provided
           title: s.string().max(120),
           date: s.isodate(),
+          tags: s.array(s.string()).default([]),
           description: s.string().optional(),
           body: s.mdx(),
         })
         .transform((data) => ({
           ...data,
           permalink: `/blog/${data.slug}`,
+          year: new Date(data.date).getUTCFullYear().toString(),
         })),
     },
   },
