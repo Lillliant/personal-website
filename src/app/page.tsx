@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Typewriter from "@/components/typeWriter";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home | Lillliant",
+  description: "Welcome to Lillliant's personal website!",
+};
 
 export default function Home() {
   return (
     <main>
-      <div className="flex flex-col items-center justify-center">
+      <div className="pt-24 flex flex-col items-center justify-center">
         <div className="h-50 w-50 overflow-hidden rounded-full bg-amber-200">
           <Image
             src="/avatar.png"

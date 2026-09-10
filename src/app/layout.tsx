@@ -24,7 +24,7 @@ export default function RootLayout({
         <div className="h-24">
           <Navbar />
         </div>
-        <div className="pt-24 h-full flex flex-col">
+        <div className="h-full flex flex-col">
           {children}
         </div>
       </body>

@@ -22,7 +22,7 @@ export default function Navbar() {
         <div className="col-span-2 inline-flex justify-center gap-4">
           <div className="flex flex-row justify-end items-center gap-4 px-2 [&>*]:transition-transform [&>*]:duration-300 [&>*]:hover:scale-105 [&>*]:hover:opacity-50">
             <Link href="/">Home</Link>
-            <Link href="/projects">Portfolio</Link>
+            <Link href="/project">Portfolio</Link>
             <Link href="/blog">Blog</Link>
           </div>
         </div>
