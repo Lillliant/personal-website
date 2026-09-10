@@ -41,7 +41,7 @@ html.dark {
     }
   }
 
-  /* Active state */
+  /* Active state, if applicable */
   &.is-active {
     background-color: var(--color-zinc-700);
     border-color: var(--color-zinc-900);
