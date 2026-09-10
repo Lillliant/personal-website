@@ -33,14 +33,16 @@ export default async function BlogIndexPage({
     new Set(posts.flatMap((p) => p.tags || [])),
   ).sort();
 
-  // 2. Filter posts matching active query params (tags use AND)
-  const filteredPosts = posts.filter((post) => {
-    const matchesYear = year ? post.year === year : true;
-    const matchesTags =
-      selectedTags.length === 0 ||
-      selectedTags.every((t) => post.tags?.includes(t));
-    return matchesYear && matchesTags;
-  });
+  // 2. Filter posts matching active query params (tags use AND), newest first
+  const filteredPosts = posts
+    .filter((post) => {
+      const matchesYear = year ? post.year === year : true;
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.every((t) => post.tags?.includes(t));
+      return matchesYear && matchesTags;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <main className="flex flex-col">
@@ -83,7 +85,10 @@ export default async function BlogIndexPage({
                     )}
                     <div className="flex flex-wrap gap-3 mt-3">
                       {post.tags?.map((t) => (
-                        <span key={t} className="px-0.5 py-0.5 gap-0.5 tag-pill">
+                        <span
+                          key={t}
+                          className="px-0.5 py-0.5 gap-0.5 tag-pill"
+                        >
                           <span className="text-amber-500">#</span>
                           {t}
                         </span>
