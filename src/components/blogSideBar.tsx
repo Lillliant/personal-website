@@ -68,7 +68,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
           <Filter className="size-4 shrink-0" aria-hidden />
           Filters
           {activeCount > 0 && (
-            <span className="rounded-full bg-black text-white text-xs px-1.5 py-0.5 min-w-5 text-center">
+            <span className="rounded-full bg-zinc-900 text-white text-xs px-1.5 py-0.5 min-w-5 text-center">
               {activeCount}
             </span>
           )}
@@ -84,7 +84,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
         className={`space-y-6 ${mobileOpen ? "mt-4 block" : "hidden"} md:mt-0 md:block`}
       >
         <div>
-          <h3 className="text-sm font-semibold uppercase text-gray-500 mb-3 tracking-wider">
+          <h3 className="text-sm font-semibold uppercase mb-3 tracking-wider">
             Year
           </h3>
           <div className="flex flex-wrap md:flex-col gap-1.5">
@@ -97,8 +97,8 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
                   onClick={() => updateYear(year)}
                   className={`text-left px-2.5 py-1 text-sm rounded-full transition-colors ${
                     isActive
-                      ? "bg-zinc-400 text-white font-medium"
-                      : "hover:bg-gray-100 text-gray-700"
+                      ? "bg-amber-400 text-zinc-900 font-medium"
+                      : "hover:bg-amber-50 hover:text-zinc-900"
                   }`}
                 >
                   {year}
@@ -109,7 +109,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase text-gray-500 mb-3 tracking-wider">
+          <h3 className="text-sm font-semibold uppercase mb-3 tracking-wider">
             Tags
           </h3>
           <div className="flex flex-wrap gap-1.5">
@@ -120,11 +120,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
                   key={tag}
                   type="button"
                   onClick={() => toggleTag(tag)}
-                  className={`px-2.5 py-1 text-xs rounded-full border transition-colors ${
-                    isActive
-                      ? "bg-black text-white border-black"
-                      : "border-gray-200 text-gray-700 hover:border-gray-400"
-                  }`}
+                  className={`gap-1 px-2.5 py-1 tag-pill can-hover ${isActive ? "is-active" : ""}`}
                 >
                   <span className="text-amber-500">#</span>
                   {tag}

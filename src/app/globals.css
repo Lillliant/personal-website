@@ -27,6 +27,28 @@ html.dark {
   }
 }
 
+@utility tag-pill {
+  /* Shared base styles */
+  @apply inline-flex items-center text-xs rounded-full transition-colors;
+
+  /* Hover state, if applicable */
+  &.can-hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-zinc-100);
+        color: var(--color-zinc-900);
+      }
+    }
+  }
+
+  /* Active state */
+  &.is-active {
+    background-color: var(--color-zinc-700);
+    border-color: var(--color-zinc-900);
+    color: var(--color-white);
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

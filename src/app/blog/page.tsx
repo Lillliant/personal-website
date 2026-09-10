@@ -83,7 +83,7 @@ export default async function BlogIndexPage({
                     {post.tags?.map((t) => (
                       <span
                         key={t}
-                        className="text-xs text-gray-600 px-2 py-0.5 border border-gray-200 rounded-full"
+                        className="px-2 py-0.5 gap-0.5 tag-pill"
                       >
                         <span className="text-amber-500">#</span>{t}
                       </span>
