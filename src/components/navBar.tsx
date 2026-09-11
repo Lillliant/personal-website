@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggler from "@/components/themeToggler";
-import { User } from "lucide-react";
 
 export default function Navbar() {
   return (
