@@ -1,12 +1,17 @@
 import Navbar from "@/components/navBar";
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Noto_Sans, Noto_Sans_Mono } from "next/font/google";
 import "./globals.css";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   weight: ["200", "400", "700"],
   variable: "--font-noto-sans",
+});
+
+const notoSansMono = Noto_Sans_Mono({
+  subsets: ['latin'],
+  variable: '--font-noto-mono',
 });
 
 export const metadata: Metadata = {
@@ -19,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${notoSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${notoSans.variable} ${notoSansMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <div className="h-24">
           <Navbar />

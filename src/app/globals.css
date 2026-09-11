@@ -30,6 +30,7 @@ html.dark {
   --color-code-inline-bg: var(--code-inline-bg);
   --color-code-border: var(--code-border);
   --font-noto-sans: var(--font-noto-sans);
+  --font-mono: var(--font-noto-mono), ui-monospace, monospace;
 }
 
 @theme {
