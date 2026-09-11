@@ -107,6 +107,33 @@ const mdxComponents = {
       </code>
     );
   },
+  table: (props: ComponentPropsWithoutRef<"table">) => (
+    <div className="mb-4 w-full overflow-x-auto">
+      <table
+        className="w-full border-collapse text-sm max-md:min-w-max md:table-fixed"
+        {...props}
+      />
+    </div>
+  ),
+  thead: (props: ComponentPropsWithoutRef<"thead">) => (
+    <thead className="border-b border-zinc-300 dark:border-zinc-700" {...props} />
+  ),
+  tbody: (props: ComponentPropsWithoutRef<"tbody">) => (
+    <tbody
+      className="divide-y divide-zinc-200 dark:divide-zinc-800"
+      {...props}
+    />
+  ),
+  tr: (props: ComponentPropsWithoutRef<"tr">) => <tr {...props} />,
+  th: (props: ComponentPropsWithoutRef<"th">) => (
+    <th
+      className="px-3 py-2 text-left align-top font-semibold break-words max-md:whitespace-nowrap"
+      {...props}
+    />
+  ),
+  td: (props: ComponentPropsWithoutRef<"td">) => (
+    <td className="px-3 py-2 align-top break-words" {...props} />
+  ),
 };
 
 export function MDXContent({ code, components }: MDXProps) {
