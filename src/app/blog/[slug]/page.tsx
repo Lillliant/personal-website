@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         <div className="hidden lg:block lg:w-1/5">
           {/* Table of Content */}
           <aside className="sticky top-24 w-full px-2">
-            <p className="text-left text-sm font-semibold uppercase tracking-wider pb-4">
+            <p className="text-left text-sm font-semibold uppercase tracking-wider pb-4 text-amber-600">
               On this page
             </p>
             <nav aria-label="Table of contents">
