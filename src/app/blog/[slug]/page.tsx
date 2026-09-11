@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       <div className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-10">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1 text-sm text-zinc-500 pb-5 transition-colors hover:text-amber-500"
+          className="inline-flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400 pb-5 transition-colors hover:text-amber-500"
         >
           <ArrowLeft className="size-4" /> Back
         </Link>
@@ -48,7 +48,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
       <div className="flex flex-col lg:flex-row">
         <div className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-10">
           <article className="mx-auto pb-10 pr-12 lg:pr-10 h-full lg:border-r lg:border-zinc-300">
-            <p className="text-gray-500 text-sm mb-2">
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-2">
               <time dateTime={post.date}>{formatShortDate(post.date)}</time>
               <span aria-hidden="true"> · </span>
               <span>{post.readingTime} min read</span>
@@ -81,15 +81,15 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
       <nav
         aria-label="Post navigation"
-        className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-20 pt-10 pb-10 pr-10 border-t border-zinc-300 md:border-t-0 flex flex-col sm:flex-row sm:justify-between gap-4"
+        className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-20 pt-10 pb-10 pr-10 border-t border-zinc-300 md:border-t-0 flex flex-col sm:flex-row sm:justify-between gap-4 text-zinc-500 dark:text-zinc-400"
       >
         {/* For moving across posts, prev = newer, next = older */}
         {prevPost ? (
           <Link
             href={prevPost.permalink}
-            className="group flex flex-col gap-1 sm:max-w-[45%] transition-colors hover:text-amber-500"
+            className="flex flex-col gap-1 sm:max-w-[45%] hover:transition-colors hover:text-amber-500"
           >
-            <span className="text-xs text-zinc-500 group-hover:text-amber-500">
+            <span className="text-xs">
               <ArrowLeft className="size-4" /> Prev
             </span>
             <span className="text-sm">{prevPost.title}</span>
@@ -100,9 +100,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         {nextPost ? (
           <Link
             href={nextPost.permalink}
-            className="group flex flex-col gap-1 sm:max-w-[45%] sm:text-right sm:items-end transition-colors hover:text-amber-500"
+            className="flex flex-col gap-1 sm:max-w-[45%] sm:text-right sm:items-end hover:transition-colors hover:text-amber-500"
           >
-            <span className="text-xs text-zinc-500 group-hover:text-amber-500">
+            <span className="text-xs">
               <ArrowRight className="size-4" /> Next
             </span>
             <span className="text-sm">{nextPost.title}</span>

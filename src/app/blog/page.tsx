@@ -68,12 +68,12 @@ export default async function BlogIndexPage({
                 >
                   <Link
                     href={post.permalink}
-                    className="group block p-4 rounded-lg transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                    className="group block p-4 rounded-lg hover:transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800"
                   >
                     <h2 className="text-2xl font-semibold group-hover:text-amber-500 transition-colors transition-transform group-hover:translate-x-1">
                       {post.title}
                     </h2>
-                    <p className="text-zinc-500 text-sm">
+                    <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                       <time dateTime={post.date}>
                         {formatShortDate(post.date)}
                       </time>
@@ -81,7 +81,7 @@ export default async function BlogIndexPage({
                       <span>{post.readingTime} min read</span>
                     </p>
                     {post.description && (
-                      <p className="my-3 dark:group-hover:text-zinc-100">
+                      <p className="my-3">
                         {post.description}
                       </p>
                     )}
@@ -92,9 +92,7 @@ export default async function BlogIndexPage({
                           className="px-0.5 py-0.5 gap-0.5 tag-pill"
                         >
                           <span className="text-amber-500">#</span>
-                          <span className=" dark:group-hover:text-zinc-100">
                             {t}
-                          </span>
                         </span>
                       ))}
                     </div>

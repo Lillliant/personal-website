@@ -97,10 +97,10 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
                   key={year}
                   type="button"
                   onClick={() => updateYear(year)}
-                  className={`w-fit max-w-full text-left px-3 py-1 text-sm rounded-full transition-colors ${
+                  className={`w-fit max-w-full text-left px-3 py-1 text-sm rounded-full hover:transition-colors ${
                     isActive
-                      ? "bg-amber-400 text-zinc-900 font-medium"
-                      : "hover:bg-amber-50 hover:text-zinc-900"
+                      ? "bg-amber-400 dark:bg-amber-400/85 dark:text-zinc-900 font-medium"
+                      : "hover:bg-amber-50 dark:hover:bg-amber-50/40"
                   }`}
                 >
                   {year}
@@ -136,7 +136,7 @@ export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
           <button
             type="button"
             onClick={clearAllFilters}
-            className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <X className="size-3.5 shrink-0" aria-hidden />
             Clear all
