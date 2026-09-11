@@ -21,6 +21,7 @@ export default defineConfig({
           description: s.string().optional(),
           metadata: s.metadata(),
           body: s.mdx(),
+          toc: s.toc(),
         })
         .transform((data) => ({
           ...data,
