@@ -1,7 +1,7 @@
 "use client";
 
 import * as runtime from "react/jsx-runtime";
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 interface MDXProps {
   code: string;
@@ -12,6 +12,20 @@ const useMDXComponent = (code: string) => {
   const fn = new Function(code);
   return fn({ ...runtime }).default;
 };
+
+/**
+ * Shiki fills <code> with token <span>s.
+ * Plain `` `inline` `` is only text/number children.
+ */
+function isShikiCode(children: ReactNode): boolean {
+  if (typeof children === "string" || typeof children === "number") return false;
+  if (Array.isArray(children)) {
+    return children.some(
+      (child) => typeof child !== "string" && typeof child !== "number",
+    );
+  }
+  return children != null;
+}
 
 const mdxComponents = {
   h1: (props: ComponentPropsWithoutRef<"h1">) => (
@@ -41,24 +55,58 @@ const mdxComponents = {
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
     <ol className="mb-4 list-decimal space-y-1 pl-6" {...props} />
   ),
-  code: ({ className, ...props }: ComponentPropsWithoutRef<"code">) => {
-    // Fenced blocks get a language-* class; leave those unstyled here.
-    if (className?.includes("language-")) {
-      return <code className={`${className ?? ""} text-code-fg`} {...props} />;
-    }
+  li: (props: ComponentPropsWithoutRef<"li">) => (
+    <li className="leading-7" {...props} />
+  ),
+  blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
+    <blockquote
+      className="mb-4 border-l-2 border-zinc-300 pl-4 italic dark:border-zinc-700"
+      {...props}
+    />
+  ),
+  pre: ({ className, ...props }: ComponentPropsWithoutRef<"pre">) => (
+    <pre
+      className={["mb-4 overflow-x-auto rounded-lg p-4 text-sm font-mono", className]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    />
+  ),
+  // Shiki inline highlights use <span class="shiki">
+  span: ({ className, ...props }: ComponentPropsWithoutRef<"span">) => {
+    const isShikiWrapper = className?.split(/\s+/).includes("shiki") ?? false;
     return (
-      <code
-        className="rounded bg-code-inline-bg px-1.5 py-0.5 font-mono text-sm text-code-fg"
+      <span
+        className={[isShikiWrapper && "rounded px-2 py-[0.2rem] text-xs", className]
+          .filter(Boolean)
+          .join(" ")}
         {...props}
       />
     );
   },
-  pre: (props: ComponentPropsWithoutRef<"pre">) => (
-    <pre
-      className="mb-4 overflow-x-auto rounded-lg border border-code-border bg-code-bg p-4 font-mono text-sm text-code-fg"
-      {...props}
-    />
-  ),
+  code: ({
+    className,
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<"code">) => {
+    const shiki = isShikiCode(children);
+
+    return (
+      <code
+        className={[
+          "font-mono text-sm",
+          !shiki &&
+            "rounded bg-code-inline-bg px-2 py-[0.2rem] text-code-fg",
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        {...props}
+      >
+        {children}
+      </code>
+    );
+  },
 };
 
 export function MDXContent({ code, components }: MDXProps) {

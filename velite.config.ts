@@ -38,7 +38,13 @@ export default defineConfig({
       rehypeSlug,
       [
         rehypeShiki as any, // eslint-disable-line @typescript-eslint/no-explicit-any
-        { theme: "one-dark-pro" },
+        {
+          theme: "rose-pine",
+          defaultLanguage: "text",
+          fallbackLanguage: "text",
+          // Inline: `print("hello"){:python}` for highlighting
+          inline: "tailing-curly-colon",
+        },
       ],
     ],
   },
