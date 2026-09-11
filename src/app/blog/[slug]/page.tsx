@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdxContent";
+import { TocList } from "@/components/tocList";
 import { formatShortDate } from "@/utils/formatDate";
 
 interface PostPageProps {
@@ -67,23 +68,12 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
         <div className="hidden lg:block lg:w-1/5">
           {/* Table of Content */}
-          <aside className="sticky top-24 w-full">
-            <p className="text-center text-sm font-semibold uppercase py-2 tracking-wider">
+          <aside className="sticky top-24 w-full px-2">
+            <p className="text-left text-sm font-semibold uppercase tracking-wider pb-4">
               On this page
             </p>
             <nav aria-label="Table of contents">
-              <ul className="space-y-2 text-sm">
-                {post.toc.map((item) => (
-                  <li key={item.url}>
-                    <a
-                      href={item.url}
-                      className="text-zinc-600 hover:text-amber-500"
-                    >
-                      {item.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <TocList entries={post.toc} />
             </nav>
           </aside>
         </div>
@@ -93,6 +83,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         aria-label="Post navigation"
         className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-20 pt-10 pb-10 pr-10 border-t border-zinc-300 md:border-t-0 flex flex-col sm:flex-row sm:justify-between gap-4"
       >
+        {/* For moving across posts, prev = newer, next = older */}
         {prevPost ? (
           <Link
             href={prevPost.permalink}

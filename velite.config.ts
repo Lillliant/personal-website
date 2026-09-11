@@ -1,3 +1,5 @@
+import rehypeShiki from "@shikijs/rehype";
+import rehypeSlug from "rehype-slug";
 import { defineConfig, s } from "velite";
 
 export default defineConfig({
@@ -30,5 +32,14 @@ export default defineConfig({
           readingTime: data.metadata.readingTime,
         })),
     },
+  },
+  mdx: {
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeShiki as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+        { theme: "one-dark-pro" },
+      ],
+    ],
   },
 });
