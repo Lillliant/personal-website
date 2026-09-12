@@ -1,5 +1,6 @@
 import rehypeShiki from "@shikijs/rehype";
 import rehypeSlug from "rehype-slug";
+import remarkSmartypants from "remark-smartypants";
 import { defineConfig, s } from "velite";
 
 export default defineConfig({
@@ -34,6 +35,7 @@ export default defineConfig({
     },
   },
   mdx: {
+    remarkPlugins: [[remarkSmartypants, { dashes: "oldschool" }]],
     rehypePlugins: [
       rehypeSlug,
       [
