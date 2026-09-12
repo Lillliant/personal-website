@@ -17,7 +17,7 @@ export function TocList({ entries, depth = 0 }: TocListProps) {
       className={
         depth === 0
           ? "space-y-2 text-sm"
-          : "mt-2 space-y-2.5 border-l-[0.75px] border-zinc-300 pl-3"
+          : "mt-2 space-y-2.5 border-l-[0.75px] border-zinc-300 dark:border-zinc-700 pl-3"
       }
     >
       {entries.map((item) => (

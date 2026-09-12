@@ -47,7 +47,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
       <div className="flex flex-col lg:flex-row">
         <div className="lg:w-4/5 pl-10 lg:pl-20 lg:pr-10">
-          <article className="mx-auto pb-10 pr-12 lg:pr-10 h-full lg:border-r lg:border-zinc-300">
+          <article className="mx-auto pb-10 pr-12 lg:pr-10 h-full lg:border-r lg:border-zinc-300 lg:dark:border-zinc-800">
             <p className="text-zinc-500 dark:text-zinc-400 text-sm mb-2">
               <time dateTime={post.date}>{formatShortDate(post.date)}</time>
               <span aria-hidden="true"> · </span>
