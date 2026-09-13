@@ -4,12 +4,12 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, Filter, X } from "lucide-react";
 
-interface BlogSidebarProps {
+interface BlogFilterProps {
   years: string[];
   tags: string[];
 }
 
-export default function BlogSidebar({ years, tags }: BlogSidebarProps) {
+export default function BlogFilter({ years, tags }: BlogFilterProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [mobileOpen, setMobileOpen] = useState(false);

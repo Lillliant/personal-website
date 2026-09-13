@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { posts } from "#site/content";
 import { formatShortDate } from "@/utils/formatDate";
-import BlogSidebar from "@/components/blogSideBar";
+import BlogFilter from "@/components/blogFilter";
 
 interface BlogIndexPageProps {
   searchParams: Promise<{
@@ -52,7 +52,7 @@ export default async function BlogIndexPage({
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10">
         <div className="w-full p-2 md:w-1/4 md:shrink-0 md:border-r md:border-zinc-300 md:pr-8">
-          <BlogSidebar years={allYears} tags={allTags} />
+          <BlogFilter years={allYears} tags={allTags} />
         </div>
         <div className="w-full min-w-0 flex-1">
           {filteredPosts.length === 0 ? (
@@ -81,9 +81,7 @@ export default async function BlogIndexPage({
                       <span>{post.readingTime} min read</span>
                     </p>
                     {post.description && (
-                      <p className="my-3">
-                        {post.description}
-                      </p>
+                      <p className="my-3">{post.description}</p>
                     )}
                     <div className="flex flex-wrap gap-3 mt-3">
                       {post.tags?.map((t) => (
@@ -92,7 +90,7 @@ export default async function BlogIndexPage({
                           className="px-0.5 py-0.5 gap-0.5 tag-pill"
                         >
                           <span className="text-amber-500">#</span>
-                            {t}
+                          {t}
                         </span>
                       ))}
                     </div>
