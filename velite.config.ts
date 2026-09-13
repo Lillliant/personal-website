@@ -1,5 +1,7 @@
 import rehypeShiki from "@shikijs/rehype";
+import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
+import remarkMath from "remark-math";
 import remarkSmartypants from "remark-smartypants";
 import { defineConfig, s } from "velite";
 
@@ -35,9 +37,13 @@ export default defineConfig({
     },
   },
   mdx: {
-    remarkPlugins: [[remarkSmartypants, { dashes: "oldschool" }]],
+    remarkPlugins: [
+      remarkMath,
+      [remarkSmartypants, { dashes: "oldschool" }],
+    ],
     rehypePlugins: [
       rehypeSlug,
+      rehypeKatex,
       [
         rehypeShiki as any, // eslint-disable-line @typescript-eslint/no-explicit-any
         {

@@ -1,6 +1,7 @@
 import Navbar from "@/components/navBar";
 import type { Metadata } from "next";
 import { Noto_Sans, Noto_Sans_Mono } from "next/font/google";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
 const notoSans = Noto_Sans({
