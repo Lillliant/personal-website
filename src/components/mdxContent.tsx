@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import * as runtime from "react/jsx-runtime";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
@@ -107,6 +108,43 @@ const mdxComponents = {
       className="mb-4 border-l-2 border-zinc-300 pl-4 italic dark:border-zinc-700"
       {...props}
     />
+  ),
+  details: ({ className, ...props }: ComponentPropsWithoutRef<"details">) => (
+    <details
+      className={[
+        "group mb-4 rounded-lg border border-zinc-200 px-4 dark:border-zinc-800",
+        "[interpolate-size:allow-keywords]",
+        "[&::details-content]:h-0 [&::details-content]:overflow-hidden",
+        "[&::details-content]:transition-[height,content-visibility] [&::details-content]:duration-300 [&::details-content]:ease-out",
+        "[&::details-content]:[transition-behavior:allow-discrete] open:[&::details-content]:h-auto",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    />
+  ),
+  summary: ({
+    className,
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<"summary">) => (
+    <summary
+      className={[
+        "flex cursor-pointer list-none items-center gap-2 py-3 font-medium",
+        "[&::-webkit-details-marker]:hidden",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    >
+      <ChevronRight
+        aria-hidden="true"
+        className="size-4 shrink-0 transition-transform duration-300 group-open:rotate-90"
+      />
+      <span>{children}</span>
+    </summary>
   ),
   hr: (props: ComponentPropsWithoutRef<"hr">) => (
     <hr

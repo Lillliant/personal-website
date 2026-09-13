@@ -1,5 +1,6 @@
 import rehypeShiki from "@shikijs/rehype";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import remarkMath from "remark-math";
 import remarkSmartypants from "remark-smartypants";
@@ -42,6 +43,7 @@ export default defineConfig({
       [remarkSmartypants, { dashes: "oldschool" }],
     ],
     rehypePlugins: [
+      rehypeRaw,
       rehypeSlug,
       rehypeKatex,
       [
