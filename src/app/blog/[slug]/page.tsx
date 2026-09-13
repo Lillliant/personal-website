@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdxContent";
-import { TocList } from "@/components/tocList";
+import { BlogTableOfContents } from "@/components/blogTableOfContent";
 import { formatShortDate } from "@/utils/formatDate";
 
 interface PostPageProps {
@@ -68,15 +68,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
 
         {post.toc.length > 0 && (
           <div className="hidden lg:block lg:w-1/5">
-            {/* Table of Content */}
-            <aside className="sticky top-24 w-full px-2">
-              <p className="text-left text-sm font-semibold uppercase tracking-wider pb-4 text-amber-600">
-                On this page
-              </p>
-              <nav aria-label="Table of contents">
-                <TocList entries={post.toc} />
-              </nav>
-            </aside>
+            <BlogTableOfContents entries={post.toc} />
           </div>
         )}
       </div>

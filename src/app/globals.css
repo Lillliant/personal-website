@@ -43,6 +43,34 @@ html.dark {
   }
 }
 
+@utility toc-rail {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Only the edge with headings scrolled past it fades. */
+  --toc-rail-start: black;
+  --toc-rail-end: black;
+
+  &[data-fade-start="true"] {
+    --toc-rail-start: transparent;
+  }
+
+  &[data-fade-end="true"] {
+    --toc-rail-end: transparent;
+  }
+
+  mask-image: linear-gradient(
+    to bottom,
+    var(--toc-rail-start) 0,
+    black 2rem,
+    black calc(100% - 2rem),
+    var(--toc-rail-end) 100%
+  );
+}
+
 @utility tag-pill {
   /* Shared base styles */
   @apply inline-flex items-center text-xs rounded-full;
