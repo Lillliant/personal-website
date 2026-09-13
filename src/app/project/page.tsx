@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ExternalLink, Star } from "lucide-react";
+import { ArrowRight, ExternalLink, Star } from "lucide-react";
 import { projects } from "#site/content";
+import Pagination from "@/components/pagination";
 
 interface ProjectIndexPageProps {
   searchParams: Promise<{
@@ -183,66 +184,13 @@ export default async function ProjectIndexPage({
               </div>
             )}
 
-            {isBrowsingAll && totalPages > 1 && (
-              <nav
-                aria-label="Project pagination"
-                className="flex items-center justify-center gap-1.5 pt-8 text-sm"
-              >
-                {currentPage > 1 ? (
-                  <Link
-                    href={`/project?page=${currentPage - 1}`}
-                    rel="prev"
-                    aria-label="Previous page"
-                    className="inline-flex items-center gap-1 px-3 py-1 rounded-full hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/40 dark:hover:text-zinc-900"
-                  >
-                    <ArrowLeft className="size-4 shrink-0" aria-hidden />
-                    Prev
-                  </Link>
-                ) : (
-                  <span className="inline-flex items-center gap-1 px-3 py-1 text-zinc-300 dark:text-zinc-700">
-                    <ArrowLeft className="size-4 shrink-0" aria-hidden />
-                    Prev
-                  </span>
-                )}
-
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (pageNumber) => {
-                    const isCurrent = pageNumber === currentPage;
-                    return (
-                      <Link
-                        key={pageNumber}
-                        href={`/project?page=${pageNumber}`}
-                        aria-label={`Page ${pageNumber}`}
-                        aria-current={isCurrent ? "page" : undefined}
-                        className={`min-w-8 text-center px-3 py-1 rounded-full hover:transition-colors ${
-                          isCurrent
-                            ? "bg-amber-400 dark:bg-amber-400/85 dark:text-zinc-900 font-medium"
-                            : "hover:bg-amber-50 dark:hover:bg-amber-50/40 dark:hover:text-zinc-900"
-                        }`}
-                      >
-                        {pageNumber}
-                      </Link>
-                    );
-                  },
-                )}
-
-                {currentPage < totalPages ? (
-                  <Link
-                    href={`/project?page=${currentPage + 1}`}
-                    rel="next"
-                    aria-label="Next page"
-                    className="inline-flex items-center gap-1 px-3 py-1 rounded-full hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/40 dark:hover:text-zinc-900"
-                  >
-                    Next
-                    <ArrowRight className="size-4 shrink-0" aria-hidden />
-                  </Link>
-                ) : (
-                  <span className="inline-flex items-center gap-1 px-3 py-1 text-zinc-300 dark:text-zinc-700">
-                    Next
-                    <ArrowRight className="size-4 shrink-0" aria-hidden />
-                  </span>
-                )}
-              </nav>
+            {isBrowsingAll && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                getPageHref={(page) => `/project?page=${page}`}
+                ariaLabel="Project pagination"
+              />
             )}
           </>
         )}

@@ -3,16 +3,20 @@ import Link from "next/link";
 import { posts } from "#site/content";
 import { formatShortDate } from "@/utils/formatDate";
 import BlogFilter from "@/components/blogFilter";
+import Pagination from "@/components/pagination";
 
 interface BlogIndexPageProps {
   searchParams: Promise<{
     year?: string;
     tag?: string | string[];
+    page?: string;
   }>;
 }
 export const metadata: Metadata = {
   title: "Blog | Lillliant",
 };
+
+const POSTS_PER_PAGE = 5;
 
 function normalizeTags(tag: string | string[] | undefined): string[] {
   if (!tag) return [];
@@ -22,7 +26,7 @@ function normalizeTags(tag: string | string[] | undefined): string[] {
 export default async function BlogIndexPage({
   searchParams,
 }: BlogIndexPageProps) {
-  const { year, tag } = await searchParams;
+  const { year, tag, page } = await searchParams;
   const selectedTags = normalizeTags(tag);
 
   // 1. Extract unique list of years and tags across all posts
@@ -44,13 +48,42 @@ export default async function BlogIndexPage({
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPosts.length / POSTS_PER_PAGE),
+  );
+
+  const requestedPage = Number.parseInt(page ?? "", 10);
+  const currentPage = Number.isNaN(requestedPage)
+    ? 1
+    : Math.min(Math.max(requestedPage, 1), totalPages);
+
+  const pageStart = (currentPage - 1) * POSTS_PER_PAGE;
+  const visiblePosts = filteredPosts.slice(
+    pageStart,
+    pageStart + POSTS_PER_PAGE,
+  );
+
+  const getPageHref = (pageNumber: number) => {
+    const params = new URLSearchParams();
+    if (year) params.set("year", year);
+    for (const t of selectedTags) {
+      params.append("tag", t);
+    }
+    if (pageNumber > 1) {
+      params.set("page", pageNumber.toString());
+    }
+    const query = params.toString();
+    return query ? `/blog?${query}` : "/blog";
+  };
+
   return (
     <main className="flex flex-col">
       <div className="grid grid-rows-2 justify-center items-center text-center pb-5">
-        <h1 className="text-3xl font-bold py-1">Lillliant's Blog</h1>
+        <h1 className="text-3xl font-bold py-1">Lillliant&apos;s Blog</h1>
         <p>Some snippets of my thoughts.</p>
       </div>
-      <div className="flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10 pb-10">
         <div className="w-full p-2 md:w-1/4 md:shrink-0 md:border-r md:border-zinc-300 md:pr-8">
           <BlogFilter years={allYears} tags={allTags} />
         </div>
@@ -61,7 +94,7 @@ export default async function BlogIndexPage({
             </p>
           ) : (
             <div className="flex flex-col gap-2">
-              {filteredPosts.map((post) => (
+              {visiblePosts.map((post) => (
                 <article
                   key={post.slug}
                   className="mx-2 pb-2 border-b border-zinc-300 md:border-b-0"
@@ -97,6 +130,13 @@ export default async function BlogIndexPage({
                   </Link>
                 </article>
               ))}
+
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                getPageHref={getPageHref}
+                ariaLabel="Blog pagination"
+              />
             </div>
           )}
         </div>

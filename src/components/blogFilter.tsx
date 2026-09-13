@@ -19,6 +19,7 @@ export default function BlogFilter({ years, tags }: BlogFilterProps) {
 
   const updateYear = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
+    params.delete("page");
 
     if (params.get("year") === value) {
       params.delete("year");
@@ -32,6 +33,7 @@ export default function BlogFilter({ years, tags }: BlogFilterProps) {
 
   const toggleTag = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
+    params.delete("page");
     const current = params.getAll("tag");
 
     params.delete("tag");

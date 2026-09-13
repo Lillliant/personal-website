@@ -99,6 +99,102 @@ html.dark {
   }
 }
 
+@utility pagination-nav {
+  @apply flex items-center justify-center gap-1.5 pt-8 text-sm;
+}
+
+@utility pagination-btn {
+  /* Shared base styles */
+  @apply inline-flex items-center justify-center gap-1 min-w-8 px-3 py-1 rounded-full text-sm text-center select-none transition-all duration-200;
+
+  /* Arrow animation for Prev / Next */
+  & .pagination-arrow-left {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  & .pagination-arrow-right {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  /* Hover and active states */
+  &.can-hover {
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-amber-50);
+        color: var(--color-zinc-900);
+
+        @variant dark {
+          background-color: color-mix(in srgb, var(--color-amber-50) 40%, transparent);
+          color: var(--color-zinc-900);
+        }
+
+        & .pagination-arrow-left {
+          transform: translateX(-3px);
+        }
+
+        & .pagination-arrow-right {
+          transform: translateX(3px);
+        }
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-amber-400);
+      outline-offset: 2px;
+      background-color: var(--color-amber-50);
+      color: var(--color-zinc-900);
+
+      @variant dark {
+        background-color: color-mix(in srgb, var(--color-amber-50) 40%, transparent);
+        color: var(--color-zinc-900);
+      }
+
+      & .pagination-arrow-left {
+        transform: translateX(-3px);
+      }
+
+      & .pagination-arrow-right {
+        transform: translateX(3px);
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+
+      & .pagination-arrow-left {
+        transform: translateX(-5px);
+      }
+
+      & .pagination-arrow-right {
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  /* Active/current page state */
+  &.is-active {
+    background-color: var(--color-amber-400);
+    color: var(--color-zinc-900);
+    font-weight: 500;
+
+    @variant dark {
+      background-color: color-mix(in srgb, var(--color-amber-400) 85%, transparent);
+      color: var(--color-zinc-900);
+    }
+  }
+
+  /* Disabled state */
+  &.is-disabled {
+    color: var(--color-zinc-300);
+    cursor: not-allowed;
+    pointer-events: none;
+
+    @variant dark {
+      color: var(--color-zinc-700);
+    }
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
