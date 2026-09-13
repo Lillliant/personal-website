@@ -1,8 +1,25 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import {
+  CircleAlert,
+  CircleCheck,
+  CircleHelp,
+  ChevronRight,
+  Info,
+  Lightbulb,
+  ShieldAlert,
+  TriangleAlert,
+  type LucideIcon,
+} from "lucide-react";
 import * as runtime from "react/jsx-runtime";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ComponentPropsWithoutRef,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 
 interface MDXProps {
   code: string;
@@ -29,6 +46,194 @@ function isShikiCode(children: ReactNode): boolean {
 // Helper function to check if a prop exists on an object, since some props are injected by GFM and not explicitly defined in the TSX.
 function hasDataAttr(props: object, name: string): boolean {
   return Object.prototype.hasOwnProperty.call(props, name);
+}
+
+type MarkColor = "red" | "yellow" | "green" | "blue" | "purple";
+
+const markColorClasses: Record<MarkColor, string> = {
+  red: "bg-red-200/80 text-red-950 dark:bg-red-900/60 dark:text-red-100",
+  yellow:
+    "bg-yellow-200/80 text-yellow-950 dark:bg-yellow-900/60 dark:text-yellow-100",
+  green:
+    "bg-green-200/80 text-green-950 dark:bg-green-900/60 dark:text-green-100",
+  blue: "bg-blue-200/80 text-blue-950 dark:bg-blue-900/60 dark:text-blue-100",
+  purple:
+    "bg-purple-200/80 text-purple-950 dark:bg-purple-900/60 dark:text-purple-100",
+};
+
+type CalloutType =
+  | "note"
+  | "tip"
+  | "important"
+  | "warning"
+  | "caution"
+  | "info"
+  | "danger";
+
+interface CalloutConfig {
+  title: string;
+  icon: LucideIcon;
+  className: string;
+  headingClassName: string;
+}
+
+const calloutConfigs: Record<CalloutType, CalloutConfig> = {
+  note: {
+    title: "Note",
+    icon: CircleHelp,
+    className:
+      "border-blue-200 bg-blue-50/80 text-blue-950 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-100",
+    headingClassName: "text-blue-700 dark:text-blue-300",
+  },
+  tip: {
+    title: "Tip",
+    icon: Lightbulb,
+    className:
+      "border-emerald-200 bg-emerald-50/80 text-emerald-950 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100",
+    headingClassName: "text-emerald-700 dark:text-emerald-300",
+  },
+  important: {
+    title: "Important",
+    icon: CircleCheck,
+    className:
+      "border-violet-200 bg-violet-50/80 text-violet-950 dark:border-violet-900 dark:bg-violet-950/40 dark:text-violet-100",
+    headingClassName: "text-violet-700 dark:text-violet-300",
+  },
+  warning: {
+    title: "Warning",
+    icon: TriangleAlert,
+    className:
+      "border-amber-200 bg-amber-50/80 text-amber-950 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-100",
+    headingClassName: "text-amber-700 dark:text-amber-300",
+  },
+  caution: {
+    title: "Caution",
+    icon: CircleAlert,
+    className:
+      "border-orange-200 bg-orange-50/80 text-orange-950 dark:border-orange-900 dark:bg-orange-950/40 dark:text-orange-100",
+    headingClassName: "text-orange-700 dark:text-orange-300",
+  },
+  info: {
+    title: "Info",
+    icon: Info,
+    className:
+      "border-cyan-200 bg-cyan-50/80 text-cyan-950 dark:border-cyan-900 dark:bg-cyan-950/40 dark:text-cyan-100",
+    headingClassName: "text-cyan-700 dark:text-cyan-300",
+  },
+  danger: {
+    title: "Danger",
+    icon: ShieldAlert,
+    className:
+      "border-red-200 bg-red-50/80 text-red-950 dark:border-red-900 dark:bg-red-950/40 dark:text-red-100",
+    headingClassName: "text-red-700 dark:text-red-300",
+  },
+};
+
+interface ParsedCallout {
+  type: CalloutType;
+  title?: string;
+  children: ReactNode[];
+}
+
+function parseCallout(children: ReactNode): ParsedCallout | null {
+  const blockChildren = Children.toArray(children);
+  const paragraphIndex = blockChildren.findIndex(isValidElement);
+
+  if (paragraphIndex === -1) return null;
+
+  const paragraph = blockChildren[paragraphIndex] as ReactElement<{
+    children?: ReactNode;
+  }>;
+  const paragraphChildren = Children.toArray(paragraph.props.children);
+  const firstTextIndex = paragraphChildren.findIndex(
+    (child) => typeof child === "string",
+  );
+
+  if (firstTextIndex === -1) return null;
+
+  const firstText = paragraphChildren[firstTextIndex] as string;
+  const match = firstText.match(
+    /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION|INFO|DANGER)\](?:[ \t]+([^\n]+))?(?:\n|$)/i,
+  );
+
+  if (!match) return null;
+
+  const remainingText = firstText.slice(match[0].length);
+  const remainingParagraphChildren = [...paragraphChildren];
+  remainingParagraphChildren[firstTextIndex] = remainingText;
+
+  const hasParagraphContent = remainingParagraphChildren.some(
+    (child) => typeof child !== "string" || child.trim().length > 0,
+  );
+  const nextBlockChildren = [...blockChildren];
+
+  if (hasParagraphContent) {
+    nextBlockChildren[paragraphIndex] = cloneElement(paragraph, {
+      children: remainingParagraphChildren,
+    });
+  } else {
+    nextBlockChildren.splice(paragraphIndex, 1);
+  }
+
+  return {
+    type: match[1].toLowerCase() as CalloutType,
+    title: match[2]?.trim(),
+    children: nextBlockChildren,
+  };
+}
+
+function Blockquote({
+  className,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"blockquote">) {
+  const callout = parseCallout(children);
+
+  if (!callout) {
+    return (
+      <blockquote
+        className={[
+          "mb-4 border-l-2 border-zinc-300 pl-4 italic dark:border-zinc-700",
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        {...props}
+      >
+        {children}
+      </blockquote>
+    );
+  }
+
+  const config = calloutConfigs[callout.type];
+  const Icon = config.icon;
+  const title = callout.title ?? config.title;
+
+  return (
+    <aside
+      aria-label={`${title} callout`}
+      className={[
+        "mb-4 rounded-lg border px-4 py-3",
+        "[&>p]:mb-3 [&>p:last-child]:mb-0",
+        "[&>ul]:mb-3 [&>ol]:mb-3",
+        config.className,
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div
+        className={[
+          "mb-2 flex items-center gap-2 font-semibold",
+          config.headingClassName,
+        ].join(" ")}
+      >
+        <Icon aria-hidden="true" className="size-4 shrink-0" />
+        <span>{title}</span>
+      </div>
+      {callout.children}
+    </aside>
+  );
 }
 
 const mdxComponents = {
@@ -68,7 +273,7 @@ const mdxComponents = {
       <a
         className={[
           isFootnoteRef
-            ? "text-amber-600 no-underline hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400"
+            ? "ms-0.5 font-medium text-amber-600 no-underline hover:text-amber-700 dark:text-amber-500 dark:hover:text-amber-400"
             : isFootnoteBackref
               ? "ml-1 inline-flex no-underline text-zinc-400 hover:text-amber-500 dark:text-zinc-500"
               : "text-amber-500 underline-offset-2 hover:text-amber-600 hover:underline",
@@ -103,12 +308,7 @@ const mdxComponents = {
       />
     );
   },
-  blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
-    <blockquote
-      className="mb-4 border-l-2 border-zinc-300 pl-4 italic dark:border-zinc-700"
-      {...props}
-    />
-  ),
+  blockquote: Blockquote,
   details: ({ className, ...props }: ComponentPropsWithoutRef<"details">) => (
     <details
       className={[
@@ -152,13 +352,38 @@ const mdxComponents = {
       {...props}
     />
   ),
-  // GFM footnote reference marker
+  mark: ({
+    className,
+    ...props
+  }: ComponentPropsWithoutRef<"mark"> & { "data-color"?: MarkColor }) => {
+    const color = props["data-color"];
+    const colorClass =
+      markColorClasses[color ?? "yellow"] ?? markColorClasses.yellow;
+
+    return (
+      <mark
+        className={[
+          "box-decoration-clone rounded-sm px-1 py-0.5",
+          colorClass,
+          className,
+        ]
+          .filter(Boolean)
+          .join(" ")}
+        {...props}
+      />
+    );
+  },
+  sub: ({ className, ...props }: ComponentPropsWithoutRef<"sub">) => (
+    <sub
+      className={["text-[0.75em] leading-none", className]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    />
+  ),
   sup: ({ className, ...props }: ComponentPropsWithoutRef<"sup">) => (
     <sup
-      className={[
-        "ms-0.5 text-[0.7em] font-medium leading-none text-amber-600 dark:text-amber-500",
-        className,
-      ]
+      className={["text-[0.75em] leading-none", className]
         .filter(Boolean)
         .join(" ")}
       {...props}
@@ -237,6 +462,20 @@ const mdxComponents = {
       </code>
     );
   },
+  kbd: ({ className, ...props }: ComponentPropsWithoutRef<"kbd">) => (
+    <kbd
+      className={[
+        "inline-flex min-w-[1.75em] items-center justify-center whitespace-nowrap rounded-md",
+        "border border-b-2 border-zinc-300 bg-zinc-50 px-1.5 py-0.5 align-middle",
+        "font-mono text-[0.8em] font-medium leading-none text-zinc-700 shadow-sm",
+        "dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      {...props}
+    />
+  ),
   table: (props: ComponentPropsWithoutRef<"table">) => (
     <div className="mb-4 w-full overflow-x-auto">
       <table
