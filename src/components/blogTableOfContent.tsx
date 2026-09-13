@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 
 export interface TocEntry {
   title: string;
@@ -43,9 +44,41 @@ function findPinnedDepth(entries: TocEntry[]): number {
 }
 
 function TocLink({ item, isActive }: { item: TocEntry; isActive: boolean }) {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      !item.url.startsWith("#")
+    ) {
+      return;
+    }
+
+    const heading = document.getElementById(
+      decodeURIComponent(item.url.slice(1)),
+    );
+    if (!heading) return;
+
+    event.preventDefault();
+
+    if (window.location.hash !== item.url) {
+      window.history.pushState(null, "", item.url);
+    }
+
+    heading.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <a
       href={item.url}
+      onClick={handleClick}
       className={`block hover:text-amber-500 ${
         isActive ? "font-bold" : ""
       }`}
