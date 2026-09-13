@@ -36,6 +36,20 @@ export default defineConfig({
           readingTime: data.metadata.readingTime,
         })),
     },
+    projects: {
+      name: "Project",
+      pattern: "projects/**/*.{md,mdx}",
+      schema: s.object({
+        slug: s.slug("projects"),
+        title: s.string().max(120),
+        description: s.string().max(300),
+        tags: s.array(s.string()).default([]),
+        github: s.string().url().optional(),
+        demo: s.string().url().optional(),
+        featured: s.boolean().default(false),
+        order: s.number().optional(),
+      }),
+    },
   },
   mdx: {
     remarkPlugins: [
