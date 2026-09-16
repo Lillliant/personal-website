@@ -175,8 +175,8 @@ export default async function ProjectIndexPage({
             {!isBrowsingAll && hasOverflow && (
               <div className="flex justify-center pt-8">
                 <Link
-                  href="/project?page=1"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-full border border-zinc-300 dark:border-zinc-700 hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/10"
+                  href="/project?page=2"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold tracking-wide rounded-full hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/10 hover:transition-transform hover:duration-300 hover:scale-105"
                 >
                   View all {sortedProjects.length} projects
                   <ArrowRight className="size-4 shrink-0" aria-hidden />
