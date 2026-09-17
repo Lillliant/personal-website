@@ -81,7 +81,7 @@ export default function Home() {
                 <GithubIcon className="h-5 w-5" />
               </a>
               <a
-                href=""
+                href="https://www.linkedin.com/in/christine-wong-6828b0193"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -91,7 +91,7 @@ export default function Home() {
                 <LinkedinIcon className="h-5 w-5" />
               </a>
               <a
-                href=""
+                href="mailto:christinewong.dev@outlook.com"
                 aria-label="Email"
                 title="Email"
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:transition-all hover:duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
