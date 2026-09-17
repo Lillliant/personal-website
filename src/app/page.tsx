@@ -27,7 +27,7 @@ export default function Home() {
 
         <div className="p-4 w-full max-w-xl text-center">
           <Typewriter
-            text="Hi, I'm Christine."
+            text="Hi, I'm Christine!"
             className="font-mono text-3xl font-bold text-center"
           />
         </div>
