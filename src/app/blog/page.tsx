@@ -13,7 +13,8 @@ interface BlogIndexPageProps {
   }>;
 }
 export const metadata: Metadata = {
-  title: "Blog | Lillliant",
+  title: "Blog | Christine Wong",
+  description: "Snippets of my thoughts and tech journey.",
 };
 
 const POSTS_PER_PAGE = 5;
@@ -80,8 +81,8 @@ export default async function BlogIndexPage({
   return (
     <main className="flex flex-col">
       <div className="grid grid-rows-2 justify-center items-center text-center pb-5">
-        <h1 className="text-3xl font-bold py-1">Lillliant&apos;s Blog</h1>
-        <p>Some snippets of my thoughts.</p>
+        <h1 className="text-3xl font-bold py-1">Christine&apos;s Blog</h1>
+        <p>Snippets of my thoughts and tech journey.</p>
       </div>
       <div className="flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10 pb-10">
         <div className="w-full p-2 md:w-1/4 md:shrink-0 md:border-r md:border-zinc-300 md:pr-8">

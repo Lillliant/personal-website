@@ -16,7 +16,7 @@ const notoSansMono = Noto_Sans_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lillliant",
+  title: "Christine Wong",
 };
 
 export default function RootLayout({

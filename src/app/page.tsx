@@ -6,9 +6,8 @@ import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Home | Lillliant",
-  description:
-    "Lillliant — CS graduate building for the web and exploring AI/ML.",
+  title: "Home | Christine Wong",
+  description: "CS graduate building for the web and exploring AI/ML.",
 };
 
 export default function Home() {
@@ -18,7 +17,7 @@ export default function Home() {
         <div className="h-50 w-50 overflow-hidden rounded-full bg-amber-200">
           <Image
             src="/avatar.png"
-            alt="Lillliant's avatar"
+            alt="Christine's avatar"
             width={200}
             height={200}
             className="h-full w-full object-cover"
@@ -28,7 +27,7 @@ export default function Home() {
 
         <div className="p-4 w-full max-w-xl text-center">
           <Typewriter
-            text="Hi, I'm Lillliant."
+            text="Hi, I'm Christine."
             className="font-mono text-3xl font-bold text-center"
           />
         </div>
@@ -36,8 +35,8 @@ export default function Home() {
         <div className="w-full max-w-xl text-center space-y-5">
           <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
             I recently finished my CS degree and spend most of my time around
-            web development and machine learning. I&apos;ve worked on full-stack apps,
-            autonomous agent tools, and intrusion detection pipelines.
+            web development and machine learning. I&apos;ve worked on full-stack
+            apps, autonomous agent tools, and intrusion detection pipelines.
           </p>
 
           <ul className="flex flex-wrap items-center justify-center font-mono text-sm text-zinc-500 dark:text-zinc-500">

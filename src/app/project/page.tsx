@@ -12,7 +12,7 @@ interface ProjectIndexPageProps {
 }
 
 export const metadata: Metadata = {
-  title: "Portfolio | Lillliant",
+  title: "Portfolio | Christine Wong",
   description: "A collection of things I have built.",
 };
 
@@ -55,7 +55,7 @@ export default async function ProjectIndexPage({
   return (
     <main className="flex flex-col">
       <div className="grid grid-rows-2 justify-center items-center text-center pb-5">
-        <h1 className="text-3xl font-bold py-1">Lillliant&apos;s Portfolio</h1>
+        <h1 className="text-3xl font-bold py-1">Christine&apos;s Portfolio</h1>
         <p>Some of the things I have built.</p>
       </div>
       <div className="px-4 sm:px-6 md:px-10 pb-10">
