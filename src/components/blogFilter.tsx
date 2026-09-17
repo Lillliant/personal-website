@@ -1,58 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronDown, Filter, X } from "lucide-react";
 
 interface BlogFilterProps {
   years: string[];
   tags: string[];
+  selectedYear: string | null;
+  selectedTags: string[];
+  onSelectYear: (year: string) => void;
+  onToggleTag: (tag: string) => void;
+  onClearAll: () => void;
 }
 
-export default function BlogFilter({ years, tags }: BlogFilterProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+export default function BlogFilter({
+  years,
+  tags,
+  selectedYear,
+  selectedTags,
+  onSelectYear,
+  onToggleTag,
+  onClearAll,
+}: BlogFilterProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const selectedYear = searchParams.get("year");
-  const selectedTags = searchParams.getAll("tag");
-
-  const updateYear = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("page");
-
-    if (params.get("year") === value) {
-      params.delete("year");
-    } else {
-      params.set("year", value);
-    }
-
-    const query = params.toString();
-    router.push(query ? `/blog?${query}` : "/blog");
-  };
-
-  const toggleTag = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("page");
-    const current = params.getAll("tag");
-
-    params.delete("tag");
-    const next = current.includes(value)
-      ? current.filter((t) => t !== value)
-      : [...current, value];
-
-    for (const tag of next) {
-      params.append("tag", tag);
-    }
-
-    const query = params.toString();
-    // Allows for selecting multiple tags for filtering
-    router.push(query ? `/blog?${query}` : "/blog");
-  };
-
-  const clearAllFilters = () => {
-    router.push("/blog");
-  };
 
   const hasActiveFilters = Boolean(selectedYear) || selectedTags.length > 0;
   const activeCount = (selectedYear ? 1 : 0) + selectedTags.length;
@@ -98,7 +68,7 @@ export default function BlogFilter({ years, tags }: BlogFilterProps) {
                 <button
                   key={year}
                   type="button"
-                  onClick={() => updateYear(year)}
+                  onClick={() => onSelectYear(year)}
                   className={`w-fit max-w-full text-left px-3 py-1 text-sm rounded-full hover:transition-colors ${
                     isActive
                       ? "bg-amber-400 dark:bg-amber-400/85 dark:text-zinc-900 font-medium"
@@ -123,7 +93,7 @@ export default function BlogFilter({ years, tags }: BlogFilterProps) {
                 <button
                   key={tag}
                   type="button"
-                  onClick={() => toggleTag(tag)}
+                  onClick={() => onToggleTag(tag)}
                   className={`gap-1 px-2.5 py-1 tag-pill can-hover ${isActive ? "is-active" : ""}`}
                 >
                   <span className="text-amber-500">#</span>
@@ -137,7 +107,7 @@ export default function BlogFilter({ years, tags }: BlogFilterProps) {
         {hasActiveFilters && (
           <button
             type="button"
-            onClick={clearAllFilters}
+            onClick={onClearAll}
             className="inline-flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
           >
             <X className="size-3.5 shrink-0" aria-hidden />

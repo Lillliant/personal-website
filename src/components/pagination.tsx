@@ -5,6 +5,7 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   getPageHref: (page: number) => string;
+  onPageChange?: (page: number) => void;
   ariaLabel?: string;
   className?: string;
 }
@@ -13,6 +14,7 @@ export default function Pagination({
   currentPage,
   totalPages,
   getPageHref,
+  onPageChange,
   ariaLabel = "Pagination",
   className = "",
 }: PaginationProps) {
@@ -28,6 +30,12 @@ export default function Pagination({
       {currentPage > 1 ? (
         <Link
           href={getPageHref(currentPage - 1)}
+          onClick={(e) => {
+            if (onPageChange) {
+              e.preventDefault();
+              onPageChange(currentPage - 1);
+            }
+          }}
           rel="prev"
           aria-label="Previous page"
           className="pagination-btn can-hover"
@@ -51,6 +59,12 @@ export default function Pagination({
           <Link
             key={pageNumber}
             href={getPageHref(pageNumber)}
+            onClick={(e) => {
+              if (onPageChange) {
+                e.preventDefault();
+                onPageChange(pageNumber);
+              }
+            }}
             aria-label={`Page ${pageNumber}`}
             aria-current={isCurrent ? "page" : undefined}
             className={`pagination-btn ${
@@ -65,6 +79,12 @@ export default function Pagination({
       {currentPage < totalPages ? (
         <Link
           href={getPageHref(currentPage + 1)}
+          onClick={(e) => {
+            if (onPageChange) {
+              e.preventDefault();
+              onPageChange(currentPage + 1);
+            }
+          }}
           rel="next"
           aria-label="Next page"
           className="pagination-btn can-hover"
