@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import ThemeToggler from "@/components/themeToggler";
+import ThemeToggler from "@/components/layout/themeToggler";
 
 export default function Navbar() {
   return (

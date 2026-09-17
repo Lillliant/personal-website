@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { posts } from "#site/content";
-import { MDXContent } from "@/components/mdxContent";
-import { BlogTableOfContents } from "@/components/blogTableOfContent";
+import { MDXContent } from "@/components/blog/mdxContent";
+import { BlogTableOfContents } from "@/components/blog/blogTableOfContent";
 import { formatShortDate } from "@/utils/formatDate";
 
 interface PostPageProps {

@@ -1,6 +1,6 @@
-import { ThemeScript } from "@/components/themeScript";
-import Navbar from "@/components/navBar";
-import Footer from "@/components/footer";
+import { ThemeScript } from "@/components/layout/themeScript";
+import Navbar from "@/components/layout/navBar";
+import Footer from "@/components/layout/footer";
 import type { Metadata } from "next";
 import { Noto_Sans, Noto_Sans_Mono } from "next/font/google";
 import "katex/dist/katex.min.css";

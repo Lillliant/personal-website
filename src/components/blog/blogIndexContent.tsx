@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { formatShortDate } from "@/utils/formatDate";
-import BlogFilter from "@/components/blogFilter";
-import Pagination from "@/components/pagination";
+import BlogFilter from "@/components/blog/blogFilter";
+import Pagination from "@/components/ui/pagination";
 
 export interface PostSummary {
   slug: string;

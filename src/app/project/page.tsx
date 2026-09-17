@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { projects } from "#site/content";
-import ProjectIndexContent, { ProjectItem } from "@/components/projectIndexContent";
+import ProjectIndexContent, { ProjectItem } from "@/components/project/projectIndexContent";
 
 export const metadata: Metadata = {
   title: "Portfolio | Christine Wong",

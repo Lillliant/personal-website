@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import Typewriter from "@/components/typeWriter";
+import Typewriter from "@/components/ui/typeWriter";
 import { Metadata } from "next";
 import { Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/icons";
 
 export const metadata: Metadata = {
   title: "Home | Christine Wong",

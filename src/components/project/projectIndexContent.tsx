@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
-import Pagination from "@/components/pagination";
-import { GithubIcon } from "@/components/icons";
+import Pagination from "@/components/ui/pagination";
+import { GithubIcon } from "@/components/ui/icons";
 
 export interface ProjectItem {
   slug: string;
@@ -180,7 +180,7 @@ export default function ProjectIndexContent({
               <button
                 type="button"
                 onClick={handleViewAll}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold tracking-wide rounded-full hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/10 hover:transition-transform hover:duration-300 hover:scale-105 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-mono font-bold tracking-wide rounded-full hover:transition-colors hover:bg-amber-50 dark:hover:bg-amber-50/10 hover:transition-transform hover:duration-300 hover:scale-105 cursor-pointer"
               >
                 View all {projects.length} projects
                 <ArrowRight className="size-4 shrink-0" aria-hidden />

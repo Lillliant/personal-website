@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { posts } from "#site/content";
-import BlogIndexContent, { PostSummary } from "@/components/blogIndexContent";
+import BlogIndexContent, { PostSummary } from "@/components/blog/blogIndexContent";
 
 export const metadata: Metadata = {
   title: "Blog | Christine Wong",
