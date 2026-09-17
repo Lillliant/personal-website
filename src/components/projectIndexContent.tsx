@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { ArrowRight, ExternalLink, Star } from "lucide-react";
 import Pagination from "@/components/pagination";
 import { GithubIcon } from "@/components/icons";
