@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <div className="flex flex-col items-center justify-center px-4">
+      <div className="my-10 flex flex-col items-center justify-center px-4">
         <div className="h-50 w-50 overflow-hidden rounded-full bg-amber-200">
           <Image
             src="/avatar.png"
