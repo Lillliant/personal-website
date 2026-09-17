@@ -6,7 +6,9 @@
     "dev": "velite dev & next dev",
     "build": "velite build && next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.4.3",
@@ -31,7 +33,8 @@
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "velite": "^0.4.0"
+    "velite": "^0.4.0",
+    "wrangler": "^4.134.0"
   },
   "overrides": {
     "postcss": "^8.5.23",
