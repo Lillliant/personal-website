@@ -1,4 +1,5 @@
 import Navbar from "@/components/navBar";
+import Footer from "@/components/footer";
 import type { Metadata } from "next";
 import { Noto_Sans, Noto_Sans_Mono } from "next/font/google";
 import "katex/dist/katex.min.css";
@@ -30,9 +31,10 @@ export default function RootLayout({
         <div className="h-24">
           <Navbar />
         </div>
-        <div className="h-full flex flex-col">
+        <div className="flex-1 flex flex-col">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
