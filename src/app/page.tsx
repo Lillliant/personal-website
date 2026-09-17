@@ -39,7 +39,7 @@ export default function Home() {
             apps, autonomous agent tools, and intrusion detection pipelines.
           </p>
 
-          <ul className="flex flex-wrap items-center justify-center font-mono text-sm text-zinc-500 dark:text-zinc-500">
+          <ul className="flex flex-wrap items-center justify-center font-mono text-sm text-zinc-500 dark:text-zinc-300">
             {["Web Development", "AI / ML", "Agentic Systems"].map((item) => (
               <li
                 key={item}
@@ -66,7 +66,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-2 pt-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+            <span className="text-xs font-mono uppercase tracking-wider text-zinc-400">
               Find me on
             </span>
             <div className="flex items-center justify-center gap-3">
@@ -76,7 +76,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 title="GitHub"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition-all duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:transition-all hover:duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
               >
                 <GithubIcon className="h-5 w-5" />
               </a>
@@ -86,7 +86,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 title="LinkedIn"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition-all duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:transition-all hover:duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
               >
                 <LinkedinIcon className="h-5 w-5" />
               </a>
@@ -94,7 +94,7 @@ export default function Home() {
                 href=""
                 aria-label="Email"
                 title="Email"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition-all duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 hover:transition-all hover:duration-200 hover:scale-110 hover:border-amber-400 hover:text-amber-500 dark:border-zinc-600 dark:text-zinc-300 dark:hover:border-amber-400 dark:hover:text-amber-400"
               >
                 <Mail className="h-5 w-5" />
               </a>
