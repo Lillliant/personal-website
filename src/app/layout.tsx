@@ -1,3 +1,4 @@
+import { ThemeScript } from "@/components/themeScript";
 import Navbar from "@/components/navBar";
 import Footer from "@/components/footer";
 import type { Metadata } from "next";
@@ -26,7 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${notoSans.variable} ${notoSansMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${notoSans.variable} ${notoSansMono.variable} h-full antialiased`}
+    >
+      <head>
+        <ThemeScript />
+      </head>
       <body className="min-h-full flex flex-col">
         <div className="h-24">
           <Navbar />
