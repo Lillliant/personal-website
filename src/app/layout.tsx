@@ -13,11 +13,12 @@ const notoSans = Noto_Sans({
 });
 
 const notoSansMono = Noto_Sans_Mono({
-  subsets: ['latin'],
-  variable: '--font-noto-mono',
+  subsets: ["latin"],
+  variable: "--font-noto-mono",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.christinewong.dev"),
   title: "Christine Wong",
 };
 
@@ -39,9 +40,7 @@ export default function RootLayout({
         <div className="h-24">
           <Navbar />
         </div>
-        <div className="flex-1 flex flex-col">
-          {children}
-        </div>
+        <div className="flex-1 flex flex-col">{children}</div>
         <Footer />
       </body>
     </html>
