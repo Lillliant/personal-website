@@ -7,8 +7,8 @@
     "build": "velite build && next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "wrangler deploy",
-    "preview": "wrangler dev"
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.4.3",
