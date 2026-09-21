@@ -19,7 +19,9 @@ const notoSansMono = Noto_Sans_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.christinewong.dev"),
-  title: "Christine Wong",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
