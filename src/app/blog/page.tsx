@@ -27,7 +27,7 @@ export default function BlogIndexPage() {
   }));
 
   return (
-    <main className="flex flex-col">
+    <main className="flex-1 flex flex-col">
       <div className="grid grid-rows-2 justify-center items-center text-center pb-5">
         <h1 className="text-3xl font-bold py-1">Christine&apos;s Blog</h1>
         <p>Snippets of my thoughts and tech journey.</p>

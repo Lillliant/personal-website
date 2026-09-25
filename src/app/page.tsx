@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
-      <div className="my-10 flex flex-col items-center justify-center px-4">
+    <main className="flex-1 flex flex-col items-center justify-center">
+      <div className="my-auto py-10 flex flex-col items-center justify-center px-4">
         <div className="h-50 w-50 overflow-hidden rounded-full bg-amber-200">
           <Image
             src="/avatar.png"

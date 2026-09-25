@@ -128,7 +128,7 @@ export default function BlogIndexContent({
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10 pb-10">
+    <div className="mx-auto max-w-5xl w-full flex flex-col md:flex-row gap-6 md:gap-10 px-4 sm:px-6 md:px-10 pb-10">
       <div className="w-full p-2 md:w-1/4 md:shrink-0 md:border-r md:border-zinc-300 md:pr-8">
         <BlogFilter
           years={allYears}
